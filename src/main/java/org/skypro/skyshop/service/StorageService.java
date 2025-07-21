@@ -1,11 +1,11 @@
 package org.skypro.skyshop.service;
 
-import org.skypro.skyshop.model.model.article.Article;
-import org.skypro.skyshop.model.model.product.DiscountedProduct;
-import org.skypro.skyshop.model.model.product.FixPriceProduct;
-import org.skypro.skyshop.model.model.product.Product;
-import org.skypro.skyshop.model.model.product.SimpleProduct;
-import org.skypro.skyshop.model.model.search.Searchable;
+import org.skypro.skyshop.model.article.Article;
+import org.skypro.skyshop.model.product.DiscountedProduct;
+import org.skypro.skyshop.model.product.FixPriceProduct;
+import org.skypro.skyshop.model.product.Product;
+import org.skypro.skyshop.model.product.SimpleProduct;
+import org.skypro.skyshop.model.Searchable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -56,4 +56,8 @@ public class StorageService {
     public Collection<Article> getAllArticles() {
         return articles.values();
     }
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(products.get(id));
+    }
+
 }

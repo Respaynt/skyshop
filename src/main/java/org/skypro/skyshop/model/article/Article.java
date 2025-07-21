@@ -1,7 +1,7 @@
-package org.skypro.skyshop.model.model.article;
+package org.skypro.skyshop.model.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.skypro.skyshop.model.model.search.Searchable;
+import org.skypro.skyshop.model.Searchable;
 
 import java.util.Objects;
 import java.util.UUID;
