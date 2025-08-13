@@ -1,7 +1,10 @@
 package org.skypro.skyshop.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -27,8 +30,9 @@ import static org.mockito.Mockito.when;
     @InjectMocks
     private SearchService searchService;
 
-    @Test
-    void search(){
+    @ValueSource(strings = {"Сы","сыр","СЫР"})
+    @ParameterizedTest
+    void search(String arg){
         when(storageService.getAllSearchables()).thenReturn(List.of(
                 new SimpleProduct(UUID.randomUUID(), "Сыр", 250),
                 new DiscountedProduct(UUID.randomUUID(), "Кофе", 365, 0.10),
@@ -38,9 +42,12 @@ import static org.mockito.Mockito.when;
                 new Article(UUID.randomUUID(), "Десерты", "Торт — лучшее завершение обеда.")
         ));
 
-        Collection<SearchResult> results = searchService.search("сыр");
+        Collection<SearchResult> results = searchService.search(arg);
+       SearchResult res1 = results.getClass(0);
 
         assertEquals(2,results.size());
+        assertEquals("PRODUCT", res1.getContentType());
 
     }
+
 }
